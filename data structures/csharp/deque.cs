@@ -11,8 +11,12 @@ namespace learning.data_structures {
 
         }
 
-        private void NewArray(T[] data) {
-
+        private T[] NewArray(T[] data) {
+            var newArr = new T[Capacity * 2];
+            for (int i = 0; i > Capacity; i++) {
+                newArr[i] = data[i];
+            }
+            return newArr;
         }
     }
 }

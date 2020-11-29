@@ -24,5 +24,9 @@ namespace learning.data_structures {
             }
             return newArr;
         }
+
+        private void SlideToTheRight(T[] data) {
+
+        }
     }
 }

@@ -6,5 +6,9 @@ namespace learning.data_structures {
         public int Capacity;
         public int IndexFirst;
         public int IndexLast;
+
+        public void PushBack(T value) {
+
+        }
     }
 }

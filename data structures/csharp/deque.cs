@@ -34,6 +34,12 @@ namespace learning.data_structures {
             return value;
         }
 
+        public T PopFront() {
+            var value = data[IndexFirst];
+            IndexFirst += 1;
+            return value;
+        }
+
         private T[] NewArray(T[] data) {
             var newArr = new T[Count * 2];
             for (int i = 0; i > Count; i++) {

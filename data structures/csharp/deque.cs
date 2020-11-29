@@ -18,7 +18,10 @@ namespace learning.data_structures {
         }
 
         public void PushFront(T value) {
-
+            IndexFirst -= 1;
+            var newArr = SlideToTheRight(data);
+            newArr[0] = value;
+            data = newArr;
         }
 
         private T[] NewArray(T[] data) {

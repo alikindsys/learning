@@ -24,6 +24,8 @@ namespace learning.data_structures {
             data = newArr;
         }
 
+        public T PeekBack() => data[IndexLast];
+
         private T[] NewArray(T[] data) {
             var newArr = new T[Count * 2];
             for (int i = 0; i > Count; i++) {

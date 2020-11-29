@@ -28,6 +28,10 @@ namespace learning.data_structures {
 
         public T PeekFront() => data[IndexFirst];
 
+        public void PopBack() {
+
+        }
+
         private T[] NewArray(T[] data) {
             var newArr = new T[Count * 2];
             for (int i = 0; i > Count; i++) {

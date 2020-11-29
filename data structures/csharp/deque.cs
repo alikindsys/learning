@@ -10,5 +10,9 @@ namespace learning.data_structures {
         public void PushBack(T value) {
 
         }
+
+        private void NewArray(T[] data) {
+
+        }
     }
 }

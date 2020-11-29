@@ -14,11 +14,12 @@ namespace learning.data_structures {
                 var newArr = NewArray(data);
                 data = newArr;
             }
-            data[IndexLast] = value;
+            data[Count] = value;
         }
 
         public void PushFront(T value) {
             IndexFirst -= 1;
+            Count += 1;
             var newArr = SlideToTheRight(data);
             newArr[0] = value;
             data = newArr;

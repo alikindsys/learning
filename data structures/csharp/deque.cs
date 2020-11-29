@@ -56,8 +56,14 @@ namespace learning.data_structures {
             return newArr;
         }
 
-        private void SlideToTheLeft(T[] data) {
-
+        private T[] SlideToTheLeft(T[] data) {
+            IndexFirst -= 1;
+            var arr = data;
+            var newArr = data;
+            for(int i = IndexLast; i > 0; i--) {
+                newArr[i - 1] = arr[i];
+            }
+            return newArr;
         }
     }
 }

@@ -8,7 +8,13 @@ namespace learning.data_structures {
         public int IndexLast;
 
         public void PushBack(T value) {
-
+            Capacity += 1;
+            IndexLast += 1;
+            if(data.Length < Capacity) {
+                var newArr = NewArray(data);
+                data = newArr;
+            }
+            data[IndexLast] = value;
         }
 
         private T[] NewArray(T[] data) {

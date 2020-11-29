@@ -25,8 +25,17 @@ namespace learning.data_structures {
             return newArr;
         }
 
-        private void SlideToTheRight(T[] data) {
-
+        private T[] SlideToTheRight(T[] data) {
+            var arr = data;
+            var newArr = data;
+            if(data.Length == Count) {
+                newArr = NewArray(data);
+            }
+            for(int i = 0; i < Count; i++) {
+                newArr[i + 1] = arr[i];
+            }
+            newArr[0] = default(T);
+            return newArr;
         }
     }
 }

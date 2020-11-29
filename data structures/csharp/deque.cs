@@ -55,5 +55,9 @@ namespace learning.data_structures {
             newArr[0] = default(T);
             return newArr;
         }
+
+        private void SlideToTheLeft(T[] data) {
+
+        }
     }
 }

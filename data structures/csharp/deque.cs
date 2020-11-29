@@ -26,6 +26,7 @@ namespace learning.data_structures {
         }
 
         private T[] SlideToTheRight(T[] data) {
+            IndexFirst += 1;
             var arr = data;
             var newArr = data;
             if(data.Length == Count) {

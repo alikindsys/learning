@@ -29,8 +29,8 @@ calculateDigitTwo x y =
     where nums = y : (reverse . take 9 $ reverse x)
           formula = sumVerifyDigit nums 2 `mod` 11 
 
-calculateCpfNums :: Int -> [Int]
-calculateCpfNums x = [firstDig, secondDig]
+calculateCpfNums :: Int -> (Int,Int)
+calculateCpfNums x = (firstDig, secondDig)
         where firstDig = calculateDigitOne cpfDigits
               secondDig = calculateDigitTwo cpfDigits firstDig
               cpfDigits = fastToDigits x
@@ -48,16 +48,18 @@ fastToDigits x = x `mod` 10 : fastToDigits (x `div` 10)
 isValid :: Cpf -> Bool
 isValid cpf | isExemption cpfDigits = False
             | otherwise = digitOne cpf == firstDig && digitTwo cpf == secondDig
-    where firstDig = calculateDigitOne cpfDigits
-          secondDig = calculateDigitTwo cpfDigits firstDig
+    where firstDig =  fst verify
+          secondDig = snd verify
+          verify = calculateCpfNums $ firstNine cpf
           cpfDigits = fastToDigits $ firstNine cpf
 
 isValidNoOO :: Int -> (Int,Int) -> Bool
 isValidNoOO cpf (digOne, digitTwo)
     | isExemption cpfDigits = False
     | otherwise = digOne == firstDig && digitTwo == secondDig
-    where firstDig = calculateDigitOne cpfDigits
-          secondDig = calculateDigitTwo cpfDigits firstDig
+    where firstDig = fst verify
+          secondDig = snd verify
+          verify = calculateCpfNums cpf
           cpfDigits = fastToDigits cpf
 
 isExemption :: [Int] -> Bool

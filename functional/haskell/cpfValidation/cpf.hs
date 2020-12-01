@@ -46,7 +46,7 @@ fastToDigits 0 = []
 fastToDigits x = x `mod` 10 : fastToDigits (x `div` 10)
 
 isValid :: Cpf -> Bool
-isValid cpf | isExemption cpfDigits = False
+isValid cpf | isExemption cpfDigits $ head cpfDigits = False
             | otherwise = digitOne cpf == firstDig && digitTwo cpf == secondDig
     where firstDig =  fst verify
           secondDig = snd verify
@@ -55,23 +55,13 @@ isValid cpf | isExemption cpfDigits = False
 
 isValidNoOO :: Int -> (Int,Int) -> Bool
 isValidNoOO cpf (digOne, digitTwo)
-    | isExemption cpfDigits = False
+    | isExemption cpfDigits $ head cpfDigits = False
     | otherwise = digOne == firstDig && digitTwo == secondDig
     where firstDig = fst verify
           secondDig = snd verify
           verify = calculateCpfNums cpf
           cpfDigits = fastToDigits cpf
 
-isExemption :: [Int] -> Bool
-isExemption cpfDigits 
-            | cpfDigits == replicate 9 1 = True
-            | cpfDigits == replicate 9 2 = True
-            | cpfDigits == replicate 9 3 = True
-            | cpfDigits == replicate 9 4 = True
-            | cpfDigits == replicate 9 5 = True
-            | cpfDigits == replicate 9 6 = True
-            | cpfDigits == replicate 9 7 = True
-            | cpfDigits == replicate 9 8 = True
-            | cpfDigits == replicate 9 9 = True
-            | cpfDigits == replicate 9 0 = True
-            | otherwise = False
+isExemption :: [Int] -> Int -> Bool
+isExemption [] _ = True
+isExemption (x:xs) val = x == val  && isExemption xs x

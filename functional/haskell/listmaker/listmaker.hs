@@ -3,6 +3,7 @@
 
 import Data.Maybe
 import Data.Either
+import Data.Char
 
 -- Made mainly for personal use since its a unique syntax and
 -- depends a bit on portuguese syntax but could? be ported over to english
@@ -23,6 +24,53 @@ data Category = Category String [ItemStack] Int
 --
 
 
+--
+-- Tokenization 
+--
+data Token = Comma
+           | LParen
+           | RParen
+           | Item String
+           | Number Int
+           deriving (Show)
+           
+
+toTokens :: String -> [Token]
+toTokens x = tokenize x ""
+
+tokenize :: String -> String -> [Token]
+
+tokenize [] [] = []
+tokenize [] a = Item a:[]
+
+tokenize (i:j:rest) buffer
+  | i == ',' = Comma:tokenize (j:rest) []
+  | i == '(' = LParen:tokenize (j:rest) []
+  | i == ')' = RParen:tokenize (j:rest) []
+  | j == ')' && isNum (i:buffer) = Number (read (i:buffer) :: Int):tokenize (j:rest) []
+  | j == ')' = Item (i:buffer):tokenize (j:rest) []
+  | j == ',' = Item (i:buffer):tokenize (j:rest) []
+  | otherwise = tokenize (j:rest) (i:buffer)
+
+tokenize [i] []
+  | i == ',' = Comma : []
+  | i == ')' = RParen : []
+  | i == '(' = LParen : []
+  | isDigit i = Number (read [i] :: Int) : []
+  | otherwise = Item [i] : []
+
+tokenize [i] buffer
+  | isNum buffer && i == ',' = Comma : Number (read buffer :: Int) : []
+  | isNum buffer && i == ')' = RParen : Number (read buffer :: Int) : []
+  | isNum buffer && i == '(' = LParen : Number (read buffer :: Int) : []
+  | i == ',' = Comma : Item buffer : []
+  | i == ')' = RParen : Item buffer : []
+  | i == '(' = LParen : Item buffer : []
+  | otherwise = Item (i:buffer) : []
+
+
+isNum :: String -> Bool
+isNum x = all isDigit x
 
 formalize :: String -> [String]
 formalize [] = []

@@ -76,6 +76,15 @@ tokenize [i] buffer
 --- with Haskell.
 ---
 
+---
+--- Grammar
+---
+
+--- itemstack     ::= item lparen number rparen | item
+--- categoryInner ::= itemstack comma categoryInner | itemstack 
+--- category      ::= item lparen category rparen | item lparen categoryInner rparen
+
+
 -- parse :: [Token] -> AST
 
 

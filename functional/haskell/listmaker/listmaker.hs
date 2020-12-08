@@ -44,14 +44,14 @@ tokenize [] [] = []
 tokenize [] a = Item a:[]
 
 tokenize (i:j:rest) buffer
-  | i == ',' = Comma:tokenize (j:rest) []
-  | i == '(' = LParen:tokenize (j:rest) []
-  | i == ')' = RParen:tokenize (j:rest) []
-  | j == ')' && isNum (i:buffer) = Number (read (i:buffer) :: Int):tokenize (j:rest) []
-  | j == ')' = Item (i:buffer):tokenize (j:rest) []
-  | j == ',' = Item (i:buffer):tokenize (j:rest) []
+  | i == ',' = Comma: tokenize (j:rest) []
+  | i == '(' = LParen: tokenize (j:rest) []
+  | i == ')' = RParen: tokenize (j:rest) []
+  | j == ')' || j == '(' && isNum (i:buffer) = Number (read . reverse $ i:buffer :: Int):tokenize (j:rest) []
+  | j == ')' || j == '(' = Item (reverse $ i:buffer):tokenize (j:rest) []
+  | j == ',' = Item (reverse $ i:buffer):tokenize (j:rest) []
   | otherwise = tokenize (j:rest) (i:buffer)
-
+  
 tokenize [i] []
   | i == ',' = Comma : []
   | i == ')' = RParen : []
@@ -63,10 +63,10 @@ tokenize [i] buffer
   | isNum buffer && i == ',' = Comma : Number (read buffer :: Int) : []
   | isNum buffer && i == ')' = RParen : Number (read buffer :: Int) : []
   | isNum buffer && i == '(' = LParen : Number (read buffer :: Int) : []
-  | i == ',' = Comma : Item buffer : []
-  | i == ')' = RParen : Item buffer : []
-  | i == '(' = LParen : Item buffer : []
-  | otherwise = Item (i:buffer) : []
+  | i == ',' = Comma : Item (reverse buffer) : []
+  | i == ')' = RParen : Item (reverse buffer) : []
+  | i == '(' = LParen : Item (reverse buffer) : []
+  | otherwise = Item (reverse $ i:buffer) : []
 
 
 isNum :: String -> Bool

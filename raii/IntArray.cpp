@@ -36,8 +36,19 @@ class IntArray {
             other.size = 0;
             other.count = 0;
         }
+
+        int& operator[](int);
+
     private:
         int size;
         int count;
         int* data;
 };
+
+int& IntArray::operator[](int index){
+    if(index >= size){
+        std::cout << "Index out of bounds. Exiting" << std::endl;
+        exit(0);
+    }
+    return data[index];
+}

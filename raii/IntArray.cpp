@@ -80,7 +80,7 @@ class IntArray {
             } else {
                 newArr = IntArray(this->size/2);
             }
-            for(int i; i < newArr.size; i++){
+            for(int i; i < this->count; i++){
                 newArr.data[i] = this->data[i];
                 newArr.count += 1;
             }

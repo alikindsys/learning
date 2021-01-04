@@ -42,8 +42,6 @@ class IntArray {
         * Additions for having a complete-ish data-type
         */
 
-        int& operator[](int);
-
         IntArray(int capacity){
             this->size = capacity;
             this->count = 0;
@@ -94,11 +92,3 @@ class IntArray {
             newArr.size = 0;
         }
 };
-
-int& IntArray::operator[](int index){
-    if(index >= size){
-        std::cout << "Index out of bounds. Exiting" << std::endl;
-        exit(0);
-    }
-    return data[index];
-}

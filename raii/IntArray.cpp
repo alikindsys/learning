@@ -36,6 +36,11 @@ class IntArray {
             other.size = 0;
             other.count = 0;
         }
+       
+       /* 
+        * Not on RAII
+        * Additions for having a complete-ish data-type
+        */
 
         int& operator[](int);
 

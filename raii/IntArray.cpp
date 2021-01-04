@@ -57,6 +57,13 @@ class IntArray {
             this->count += 1;
         }
 
+        void Pop(){
+            this->count -= 1;
+            if(this->count == (this->size/2))
+                this->Resize(true);
+            this->data[this->count] == 0;
+        }
+
     private:
         int size;
         int count;

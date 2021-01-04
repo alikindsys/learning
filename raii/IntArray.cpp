@@ -44,6 +44,12 @@ class IntArray {
 
         int& operator[](int);
 
+        IntArray(int capacity){
+            this->size = capacity;
+            this->count = 0;
+            this->data = new int[capacity];
+        }
+
     private:
         int size;
         int count;

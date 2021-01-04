@@ -50,6 +50,13 @@ class IntArray {
             this->data = new int[capacity];
         }
 
+        void Push(int value){
+            if(this->count == this->size)
+                this->Resize();
+            this->data[this->count] = value;
+            this->count += 1;
+        }
+
     private:
         int size;
         int count;

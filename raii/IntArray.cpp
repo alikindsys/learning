@@ -54,6 +54,31 @@ class IntArray {
         int size;
         int count;
         int* data;
+
+        /* 
+        * Not on RAII
+        * Additions for having a complete-ish data-type
+        */
+        void Resize(bool diminish = false){
+            IntArray newArr;
+            if(!diminish){
+                newArr = IntArray(this->size*2);
+            } else {
+                newArr = IntArray(this->size/2);
+            }
+            for(int i; i < newArr.size; i++){
+                newArr.data[i] = this->data[i];
+                newArr.count += 1;
+            }
+            delete this->data;
+            this->count = newArr.count;
+            this->size = newArr.size;
+            this->data = newArr.data;
+            
+            newArr.data = nullptr;
+            newArr.count = 0;
+            newArr.size = 0;
+        }
 };
 
 int& IntArray::operator[](int index){

@@ -8,11 +8,21 @@ class IntArray {
             this->data = new int[4];
         }
         IntArray(IntArray& other){
-            delete this->data;
             this->size = other.size;
             this->count = other.count;
+            this->data = new int[this->size];
+
             for(int i = 0; i < other.count; i++)
                 this->data[i] = other.data[i];
+        }
+        IntArray(IntArray&& other){
+            this->size = other.size;
+            this->count = other.count;
+            this->data = other.data;
+            
+            other.size = 0;
+            other.count = 0;
+            other.data = nullptr;
         }
         ~IntArray(){
             delete this->data;
@@ -21,12 +31,15 @@ class IntArray {
         }
         IntArray& operator=(IntArray& other){
             delete this->data;
+
             this->size = other.size;
             this->count = other.count;
+            this->data = new int[this->size];
+
             for(int i = 0; i < other.count; i++)
                 this->data[i] = other.data[i];
         }
-        IntArray&& operator=(IntArray&& other){
+        IntArray& operator=(IntArray&& other){
             delete this->data;
             this->size = other.size;
             this->count = other.count;

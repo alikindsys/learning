@@ -1,3 +1,9 @@
+module ListMaker
+  (
+    toTokens
+  , parseMany
+  ) where
+  
 -- ListMaker
 -- Converts an arbitrary string into a formatted shopping list
 

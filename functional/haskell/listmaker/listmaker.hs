@@ -2,6 +2,7 @@ module ListMaker
   (
     toTokens
   , parseMany
+  , toStr
   ) where
   
 -- ListMaker
@@ -10,6 +11,8 @@ module ListMaker
 import Data.Maybe
 import Data.Either
 import Data.Char
+
+import Data.List
 
 -- Made mainly for personal use since its a unique syntax and
 -- depends a bit on portuguese syntax but could? be ported over to english
@@ -106,3 +109,26 @@ rest'' x = case x of
 
 isNum :: String -> Bool
 isNum = all isDigit
+
+
+toStr :: Int -> AST -> String
+toStr y (Single name)  = duplicate "    " y ++ "- " ++ trim name ++ "\n"
+toStr y (Multiple name count)  = duplicate "    " y ++ "- (" ++ show count ++ "x) " ++ trim name ++ "\n"
+toStr y (Category name fakyu)  = duplicate "    " y ++ trim name ++ ":\n" ++ concatMap (toStr (y+1)) fakyu
+
+---
+--- Code Yoinked from Data.List.Extra (extra-1.7.3)
+--- Since i can't figure out how cabal works. yay!
+---
+
+trim :: String -> String
+trim = trimEnd . trimStart
+
+trimEnd :: String -> String
+trimEnd = dropWhileEnd isSpace
+
+trimStart :: String -> String
+trimStart = dropWhile isSpace
+
+duplicate :: String -> Int -> String
+duplicate string n = concat $ replicate n string

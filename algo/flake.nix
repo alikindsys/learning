@@ -59,6 +59,7 @@
             '';
 
             packages = [
+              pkgs.typst
               python.pkgs.venvShellHook
               python.pkgs.pip
             ];

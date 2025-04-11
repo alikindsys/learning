@@ -17,3 +17,5 @@ Table of contents and back-references
 |Page|Date|Topic|
 |----|----|-----|
 |16|10/04/2025|[`Insertion Sort`](./chapt2/insertion.py)|
+|30|11/04/2025|[`Merge Sort`](./chapt2/merge.py) - In-Place|
+|None|11/04/2025|[`Merge Sort`](./chapt2/naivemerge.py) - Simple|

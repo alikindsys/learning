@@ -40,30 +40,22 @@ def _merge(arr, startL, mid, endR):
     flagI = False
     flagJ = False
 
-    def increment_i():
-        nonlocal i, flagI, lenL
-        if i + 1 < lenL:
-            i += 1
-        else:
-            flagI = True
-
-    def increment_j():
-        nonlocal j, flagJ, lenR
-        if j + 1 < lenR:
-            j += 1
-        else:
-            flagJ = True
-
     for idx in range(startL, endR + 1):
         if flagI and flagJ:
             break
 
         if not flagI and (L[i] < R[j] or flagJ):
             arr[idx] = L[i]
-            increment_i()
+            if i + 1 < lenL:
+                i += 1
+            else:
+                flagI = True
         else:
             arr[idx] = R[j]
-            increment_j()
+            if j + 1 < lenR:
+                j += 1
+            else:
+                flagJ = True
 
 if __name__ == "__main__":
     unsorted = [3,2,1]

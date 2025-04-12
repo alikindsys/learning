@@ -25,3 +25,11 @@ $Theta(n^3)$
      $A$[cur] = small\
      $A$[index] = temp\
 ]
+
+=== Page 39
+
+#question("2.3-3",
+[Use mathematical induction to show that when $n$ is an exact power of 2, the solution of the recurrance
+ $ T(n) = cases(2 &bold("if") n = 2, 2T(n/2)+n &bold("if") n = 2^k bold("for") k > 1)
+ $
+is $T(n) = n log n$.])

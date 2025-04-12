@@ -41,18 +41,14 @@ def _merge(arr, startL, mid, endR):
     flagJ = False
 
     def increment_i():
-        nonlocal i
-        nonlocal flagI
-        nonlocal lenL
+        nonlocal i, flagI, lenL
         if i + 1 < lenL:
             i += 1
         else:
             flagI = True
 
     def increment_j():
-        nonlocal j
-        nonlocal flagJ
-        nonlocal lenR
+        nonlocal j, flagJ, lenR
         if j + 1 < lenR:
             j += 1
         else:

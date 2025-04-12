@@ -5,62 +5,46 @@
 import math
 
 def msort(arr):
-    # Array, Starting Point, Size
-    _msort(arr, 0, len(arr))
+    # Array, Starting Point, End Point
+    _msort(arr, 0, len(arr) - 1)
     return arr
 
-def _msort(arr, spoint, size):
-    if size > 1:
+def _msort(arr, spoint, epoint):
+#    print(f"_msort({arr}, {spoint}, {epoint})")
+    if spoint < epoint:
         # Split the array into two halves
-        halfSize = math.floor(size / 2)
+        midpoint = math.floor((spoint + epoint) / 2)
+        _msort(arr, spoint, midpoint)
+        _msort(arr, midpoint + 1, epoint)
 
-        # Calculate the starting points
-        startL = spoint
-        startR = spoint + (size - halfSize)
+        # Array, Starting Point, Mid Point, Ending Point
+        _merge(arr, spoint, midpoint, epoint)
 
-        _msort(arr, startL, halfSize)
-        _msort(arr, startR, halfSize)
+def _merge(arr, startL, mid, endR):
+ #   print(f"_merge({arr}, {startL}, {mid}, {endR})")
 
-        # Array, Starting Point (Left), Starting Point (Right), Size
-        _merge(arr, startL, startR, size)
-
-def _merge(arr, startL, startR, size):
-    endL = startR - 1
-
-    halfSize = math.floor(size / 2)
-    endR = startR + (halfSize - 1)
-
-    L = []
-    R = []
-
-    print(f"_merge({arr}, {startL}, {startR}, {size}): L<{startL}..{endL}> | R<{startR}..{endR}>")
-
-    for idx in range(startL, endL + 1):
-        L.append(arr[startL + (idx - startL)])
+    L = arr[startL: mid + 1]
+    R = arr[mid + 1: endR + 1]
 
     L.append(math.inf)
-
-    for idx in range(startR, endR + 1):
-        R.append(arr[startR + (idx - startR)])
-
     R.append(math.inf)
 
-    print(f"L = {L}, R = {R}")
+  #  print(f"L = {L}, R = {R}")
 
     i = 0
     j = 0
 
-    for idx in range(size):
+    for idx in range(startL, endR + 1):
         if L[i] < R[j]:
-            arr[startL + idx] = L[i]
+            arr[idx] = L[i]
             i += 1
         else:
-            arr[startL + idx] = R[j]
+            arr[idx] = R[j]
             j += 1
 
 if __name__ == "__main__":
     unsorted = [3,2,1]
     print(f"Unsorted: {unsorted}")
-    _msort(unsorted, 0, len(unsorted))
+    msort(unsorted)
     print(f"Sorted: {unsorted}")
 

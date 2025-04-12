@@ -58,16 +58,7 @@ def _merge(arr, startL, mid, endR):
         if flagI and flagJ:
             break
 
-        if flagI:
-            arr[idx] = R[j]
-            increment_j()
-            continue
-        if flagJ:
-            arr[idx] = L[i]
-            increment_i()
-            continue
-
-        if L[i] < R[j]:
+        if not flagI and (L[i] < R[j] or flagJ):
             arr[idx] = L[i]
             increment_i()
         else:

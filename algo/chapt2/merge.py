@@ -10,7 +10,7 @@ def msort(arr):
     return arr
 
 def _msort(arr, spoint, epoint):
-#    print(f"_msort({arr}, {spoint}, {epoint})")
+    #print(f"_msort({arr}, {spoint}, {epoint})")
     if spoint < epoint:
         # Split the array into two halves
         midpoint = math.floor((spoint + epoint) / 2)
@@ -21,26 +21,62 @@ def _msort(arr, spoint, epoint):
         _merge(arr, spoint, midpoint, epoint)
 
 def _merge(arr, startL, mid, endR):
- #   print(f"_merge({arr}, {startL}, {mid}, {endR})")
+    #print(f"_merge({arr}, {startL}, {mid}, {endR})")
 
     L = arr[startL: mid + 1]
     R = arr[mid + 1: endR + 1]
 
-    L.append(math.inf)
-    R.append(math.inf)
+    lenL = len(L)
+    lenR = len(R)
 
-  #  print(f"L = {L}, R = {R}")
+    # L.append(math.inf)
+    # R.append(math.inf)
+
+    print(f"L = {L}, R = {R}")
 
     i = 0
     j = 0
 
-    for idx in range(startL, endR + 1):
-        if L[i] < R[j]:
-            arr[idx] = L[i]
+    flagI = False
+    flagJ = False
+
+    def increment_i():
+        nonlocal i
+        nonlocal flagI
+        nonlocal lenL
+        if i + 1 < lenL:
             i += 1
         else:
-            arr[idx] = R[j]
+            flagI = True
+
+    def increment_j():
+        nonlocal j
+        nonlocal flagJ
+        nonlocal lenR
+        if j + 1 < lenR:
             j += 1
+        else:
+            flagJ = True
+
+    for idx in range(startL, endR + 1):
+        if flagI and flagJ:
+            break
+
+        if flagI:
+            arr[idx] = R[j]
+            increment_j()
+            continue
+        if flagJ:
+            arr[idx] = L[i]
+            increment_i()
+            continue
+
+        if L[i] < R[j]:
+            arr[idx] = L[i]
+            increment_i()
+        else:
+            arr[idx] = R[j]
+            increment_j()
 
 if __name__ == "__main__":
     unsorted = [3,2,1]

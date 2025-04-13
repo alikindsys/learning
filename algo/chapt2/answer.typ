@@ -33,3 +33,45 @@ $Theta(n^3)$
  $ T(n) = cases(2 &bold("if") n = 2, 2T(n/2)+n &bold("if") n = 2^k bold("for") k > 1)
  $
 is $T(n) = n log n$.])
+
+#pagebreak()
+=== Undefined
+
+Induction Theorem:
+$ P(n_0) and (forall n_i > n+o . P(n_i) -> P(n_(i+1))) -> forall n > n_o P(n)
+$
+
+#question("1.1-1", [Use mathematical induction to show that $T(n) = (n^2+n)/2$ for
+$ T(n) = cases(1 &bold("if") n = 1, T(n-1)+n &bold("if") n > 1)
+$])
+
+We show that $T$ holds for $n_0 = 1$
+$ T(1) = (1^2 + 1)/2 = 2/2 =  1
+$
+
+#let c(c, x) = text(fill: c, $#x$)
+#let cred(x) = c(red, x)
+#let cblue(x) = c(blue,x)
+Assuming $ T(n - 1) = ((n - 1)^2 +  (n - 1)) / 2$ and $n > 1$
+$ T(n - 1) &= (cred((n - 1)^2) + cblue(n - 1)) / 2 \
+           &= (cred(n^2 - 2n + 1) + cblue(n - 1)) / 2 \
+           &= (n^2 - n) / 2 \
+$
+
+By the definition of $T(n)$
+
+$ T(n) &= cred(T(n - 1)) + cblue(n) \
+           &= cred((n^2 - n) / 2) + cblue(n) \
+           &= (n^2 - n + cblue(2n)) / 2 \
+           &= (n^2 + n) / 2
+$
+
+Therefore
+$ T(n) = (n^2 + n) / 2
+$
+
+By the induction theorem:
+$ T(n) = (n^2 + n) / 2 space forall n in NN, n != 0
+$
+
+$qed$

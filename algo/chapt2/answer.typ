@@ -48,6 +48,9 @@ $ T(n) &= 2(n/2 log_2 n/2) + n \
        &= n log_2 n
 $
 
+Therefore $T(n) = n log_2 n$.
+
+#question("2.3-4", [We can express insertion sort as a recursive procedure as follows. In order to sort $A[1..n]$, we recursively sort $A[1..n-1]$ and then insert $A[n]$ into the sorted array $A[1..n-1]$. Write a recurrance for the running time of this recursive version of insertion sort.])
 
 
 #pagebreak()

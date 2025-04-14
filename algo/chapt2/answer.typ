@@ -32,7 +32,23 @@ $Theta(n^3)$
 [Use mathematical induction to show that when $n$ is an exact power of 2, the solution of the recurrance
  $ T(n) = cases(2 &bold("if") n = 2, 2T(n/2)+n &bold("if") n = 2^k bold("for") k > 1)
  $
-is $T(n) = n log n$.])
+is $T(n) = n log_2 n$.])
+
+
+We show that $T$ holds for $n = 2$
+
+$ T(2) = 2 log_2 2 = 2 * 1 = 2
+$
+
+Assuming $T(n/2) = n/2 log_2 n/2$
+$ T(n) &= 2(n/2 log_2 n/2) + n \
+       &= 2(n/2 (log_2 n - log_2 2)) + n \
+       &= 2(n/2 (log_2 n - 1)) + n \
+       &= (n log_2 n - n) + n \
+       &= n log_2 n
+$
+
+
 
 #pagebreak()
 === Undefined

@@ -7,6 +7,16 @@
   )
 }
 
+=== Page 22
+
+#question("2.1-3", [Consider the _*searching problem*_:
+
+*Input:* A sequence of $n$ numbers $A = <a_1,a_2,...,a_n>$ and a value $v$. \
+*Output:* An index $i$ such that $v = A[i]$ or the special value #smallcaps("nil") if $v$ does not appear in $A$.
+
+Write pseudocode for #smallcaps("Linear Search"), which scans the sequence, looking for $v$. Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the necessary three properties.
+])
+
 === Page 29
 
 #question("2.2-1", [Express the function $n^3/1000 - 100n^2 - 100n + 3$ in terms of $Theta$ notation.])

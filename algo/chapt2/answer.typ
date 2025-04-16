@@ -2,6 +2,7 @@
 #import "@preview/showybox:2.0.4": showybox
 
 #let question(num, stmt) = {
+  set enum(numbering: "A)")
   showybox(
     [*#num* - #stmt]
   )
@@ -48,7 +49,11 @@ Write pseudocode for #smallcaps("Linear Search"), which scans the sequence, look
 #question("2.2-1", [Express the function $n^3/1000 - 100n^2 - 100n + 3$ in terms of $Theta$ notation.])
 $Theta(n^3)$
 
-#question("2.2-2'", [Write pseudocode for #smallcaps([Selection Sort]).])
+#question("2.2-2", [Consider sorting $n$ numbers stored in array $A$ by first finding the smallest element of $A$ and exchanging it with the element in $A[0]$. Then finding the second smallest element of $A$, and exchange it with $A[1]$. This algorithm is known as #smallcaps([Selection Sort]).
+    1. Write pseudocode for #smallcaps([Selection Sort]).
+    2. What loop invariants does this algorithm maintain?
+    3. Why does it need to run for only the first $n-1$ elements, rather than for all $n$ elements?
+    4. Give the best-case and worst-case running times of #smallcaps([Selection Sort]) in $Theta$-notation.])
 #algo(title: "Selection Sort", parameters: ("A", ))[
   for cur = 0 to $A$.length:#i\
     small = $A$[cur]\

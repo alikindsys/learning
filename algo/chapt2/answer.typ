@@ -7,6 +7,16 @@
   )
 }
 
+#let hint(desc: "Hint", tip) = {
+    showybox(
+        frame:
+        (body-color: blue.lighten(50%),
+            radius:  0pt,
+            thickness: (left: 1pt, right: 0pt, bottom: 0pt, top: 0pt)
+        )
+    )[#emoji.info *#desc*: #tip]
+}
+
 === Page 22
 
 #question("2.1-3", [Consider the _*searching problem*_:
@@ -16,6 +26,22 @@
 
 Write pseudocode for #smallcaps("Linear Search"), which scans the sequence, looking for $v$. Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the necessary three properties.
 ])
+
+#hint(desc:"Loop Invariants")[Used for showing why an algorithm is correct. Has the following properties:\
+    - *Initialization:* It is true prior to the first iteration of the loop.
+    - *Maintenance:* If it is true before an iteration of the loop, it remains true before the next iteration.
+    - *Termination:* When the loop terminates, the invariant gives us a useful property that helps show that the algorithm is correct.]
+
+#algo(title: "Linear Search", parameters: ("A","v"))[
+    for i = 0 to $A$.length:#i\
+    if $A$[i] == $v$:#i\
+    return cur#d#d\
+    return #smallcaps("nil")
+]
+
+*Initialization:* The index is not found prior to the first iteration since nothing has been searched yet.\
+*Maintenance:* At each step $i$ is incremented and $A[i]$ is checked against $v$ and the loop terminates if $v = A[i]$.\
+*Termination:* The loop terminates when either $v$ is found, returning the index, or when all of $A$ is searched, returning #smallcaps("nil").\
 
 === Page 29
 

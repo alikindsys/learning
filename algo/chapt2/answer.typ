@@ -18,6 +18,11 @@
     )[#emoji.info *#desc*: #tip]
 }
 
+#show link: it => {
+    set text(blue)
+    underline(it)
+}
+
 === Page 22
 
 #question("2.1-3", [Consider the _*searching problem*_:
@@ -31,7 +36,7 @@ Write pseudocode for #smallcaps("Linear Search"), which scans the sequence, look
 #hint(desc:"Loop Invariants")[Used for showing why an algorithm is correct. Has the following properties:\
     - *Initialization:* It is true prior to the first iteration of the loop.
     - *Maintenance:* If it is true before an iteration of the loop, it remains true before the next iteration.
-    - *Termination:* When the loop terminates, the invariant gives us a useful property that helps show that the algorithm is correct.]
+    - *Termination:* When the loop terminates, the invariant gives us a useful property that helps show that the algorithm is correct.]<loop_invariant>
 
 #algo(title: "Linear Search", parameters: ("A","v"))[
     for i = 0 to $A$.length:#i\
@@ -49,9 +54,9 @@ Write pseudocode for #smallcaps("Linear Search"), which scans the sequence, look
 #question("2.2-1", [Express the function $n^3/1000 - 100n^2 - 100n + 3$ in terms of $Theta$ notation.])
 $Theta(n^3)$
 
-#question("2.2-2", [Consider sorting $n$ numbers stored in array $A$ by first finding the smallest element of $A$ and exchanging it with the element in $A[0]$. Then finding the second smallest element of $A$, and exchange it with $A[1]$. This algorithm is known as #smallcaps([Selection Sort]).
+#question("2.2-2", [Consider sorting $n$ numbers stored in array $A$ by first finding the smallest element of $A$ and exchanging it with the element in $A[0]$. Then finding the second smallest element of $A$, and exchange it with $A[1]$. Continue in this manner for the first $n-1$ elements of $A$. This algorithm is known as #smallcaps([Selection Sort]).
     1. Write pseudocode for #smallcaps([Selection Sort]).
-    2. What loop invariants does this algorithm maintain?
+    2. What #link(label("loop_invariant"))[loop invariants] does this algorithm maintain?
     3. Why does it need to run for only the first $n-1$ elements, rather than for all $n$ elements?
     4. Give the best-case and worst-case running times of #smallcaps([Selection Sort]) in $Theta$-notation.])
 #algo(title: "Selection Sort", parameters: ("A", ))[

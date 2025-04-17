@@ -214,6 +214,33 @@ $ Delta"ABC" tilde.equiv Delta"CDE" $
 #pagebreak()
 #question("1.1-4", [Proof that the inversion of $not A and ((B < C) or D)$ is $A or ((B >=C) and not D)$.\ List all identities you used.])
 
+Given the following identities:
+
+#[
+    #set math.equation(numbering: "(1)")
+    #counter(math.equation).update(0)
+    $ not (not A) = A $
+    $ not (A and B) = not A or not B $
+    $ not (A or B) = not A and not B $
+    $ not (A < B) = A >= B $
+]
+
+We can proof
+
+$ not (not A and ((B < C) or D)) &= A or ((B >= C) and not D)\
+<=> "(id 2)"\
+not (not A) or not((B < C) or D) &= A or ((B >= C) and not D)\
+<=> "(id 1)"\
+A or not((B < C) or D) &= A or ((B >= C) and not D) \
+<=> "(id 3)"\
+A or (not(B < C) and not D) &= A or ((B >= C) and not D) \
+<=> "(id 4)" \
+A or ((B >= C) and not D) &= A or ((B >= C) and not D)\
+$
+
+Tautology, therefore we're done. $qed$
+
+
 // Local Variables:
 // tp--master-file: "/home/alikindsys/Development/self/learning/algo/chapt2/answer.typ"
 // End:

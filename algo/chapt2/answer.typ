@@ -1,5 +1,6 @@
 #import "@preview/algo:0.3.6": algo, i, d, comment, code
 #import "@preview/showybox:2.0.4": showybox
+#import "@preview/cetz:0.3.4"
 
 #let question(num, stmt) = {
   set enum(numbering: "A)")
@@ -140,3 +141,79 @@ $ T(n) = (n^2 + n) / 2 space forall n in NN, n != 0
 $
 
 $qed$
+
+#pagebreak()
+#question("1.1-2",[Proof that $x*2=x+x$ using only the following identities:
+    #set math.equation(numbering: "1.")
+
+    $ 2 &= 1 - 1 $
+    $ a * 1 &= a $
+    $ a * b &= ( a * (b - 1)) + a $
+])
+
+$ x * 2 &= x + x \
+<=> "(id 3)" \
+(x * (2 - 1 )) + x &= x + x \
+<=> "(id 1)"\
+(x * 1) + x &= x + x \
+<=> "(id 2)"\
+x + x &= x + x
+$
+
+Tautology, therefore we're done. $qed$
+
+#question("1.1-3", [Proof that $Delta A B C$ is congruent to $Delta C D E$ using the following identities:
+    - If two triangles have two congruent angles and one congruent side in the same order relative to each other they are congruent. (Usuallt called "AAS Congruent").
+    - When two straight lines cross, their opposite angles are congruent to each other.
+    #set align(center)
+    #cetz.canvas({
+        import cetz.draw: *
+        
+        line((1,4),(3,5))
+        
+        set-style(content: (frame: "rect", stroke: none, padding: .1))
+        
+        content((0.8,4))[$A$]
+        content((3.2,5.2))[$B$]
+        content((3.2,3.2))[$C$]
+        content((2.8,0.8))[$E$]
+        content((5.2,2))[$D$]
+    
+        line((1,4), (5,2))
+        line((5,2), (3,1))
+        line((3,1), (3,3))
+
+        line((3,3),(3,5))
+
+        arc((3,5 - .3), start: 270deg, stop: 210deg, radius: 0.3, name: "^abc")
+        arc((3, 1.3), start: 90deg, stop:30deg, radius: 0.3, name: "^ced")
+        
+        line((4.1,1.4) , (4, 1.6))
+        line((2.1,4.4), (2, 4.6))
+        
+        line((3.2-.1, 1.3-.1), (3.35-.15, 1.45-.1))
+        line((2.9,4.8), (2.75+.05,4.6+.05))
+    })
+])
+
+When $accent("AD", -)$ crosses with $accent("BE", -)$ the following angles become congruent:
+
+$ angle"ACB" tilde.equiv angle"DCE"\
+angle"BCD" tilde.equiv angle"ACE"
+$
+
+For an Angle-Angle-Side congruent triangle we need 2 congruent angles and one congruent side.
+
+$ accent("DE", -) tilde.equiv accent("AB", -) \
+angle"CED" tilde.equiv angle"ABC"\
+angle"ACB" tilde.equiv angle"DCE"
+$
+
+By AAS Congruency:
+$ Delta"ABC" tilde.equiv Delta"CDE" $
+#pagebreak()
+#question("1.1-4", [Proof that the inversion of $not A and ((B < C) or D)$ is $A or ((B >=C) and not D)$.\ List all identities you used.])
+
+// Local Variables:
+// tp--master-file: "/home/alikindsys/Development/self/learning/algo/chapt2/answer.typ"
+// End:
